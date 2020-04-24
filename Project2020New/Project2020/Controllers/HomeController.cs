@@ -40,10 +40,17 @@ namespace Project2020.Controllers
             return View();                   
         }
         [HttpPost]
-        public RedirectToActionResult Create(Guest guest)
+        public IActionResult Create(Guest guest)
         {
-            Guest newGuest = _guestRepository.Add(guest);
-            return RedirectToAction("details", new { id = newGuest.Id });
+            if (ModelState.IsValid)
+            {
+                Guest newGuest = _guestRepository.Add(guest);
+                return RedirectToAction("details", new { id = newGuest.Id });
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }

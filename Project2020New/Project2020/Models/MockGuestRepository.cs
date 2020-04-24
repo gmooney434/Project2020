@@ -8,13 +8,17 @@ namespace Project2020.Models
     public class MockGuestRepository : IGuestRepository
     {
         private List<Guest> _guestList;
+        readonly string dateInput = "01/01/1998";
+
 
         public MockGuestRepository()
         {
+            DateTime myDateTime = DateTime.Parse(dateInput);
+
             _guestList = new List<Guest>()
             {
-                new Guest() {Id = 1, Forename = "John", Surname = "Smith" },
-                new Guest() {Id = 2, Forename = "Jane", Surname = "Doe" }
+                new Guest() {Id = 1, Forename = "John", Surname = "Smith", Date_Of_Birth = myDateTime, PhotoPath = "files" },
+                new Guest() {Id = 2, Forename = "Jane", Surname = "Doe", Date_Of_Birth = myDateTime, PhotoPath = "files" }
             };
         }
 
