@@ -27,7 +27,7 @@ namespace Project2020.Controllers
         {
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel
             {
-                Guest = _guestRepository.GetGuest(1),
+                Guest = _guestRepository.GetGuest(id),
                 PageTitle = "Guest Details"
             };
 ;
