@@ -6,21 +6,29 @@
 }
 
 
-    <h3>@Model.PageTitle</h3>
-    
-    <div>
-        Forename: @Model.Guest.Forename
-    </div>
-    <div>
-        Surname: @Model.Guest.Surname
-    </div>
-    <div>
-        DateOfBirth: @Model.Guest.Date_Of_Birth
-    </div>
-    <div>
-        PhotoPath: @Model.Guest.PhotoPath
-    </div>
+<div class="row justify-content-center m-3">
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header">
+                <h1>@Model.Guest.Forename,@Model.Guest.Surname</h1>
+            </div>
 
+            <div class="card-body text-center">
+                <img class="card-img-top" src="~/images/noimage.jpg" />
+
+                <h4>Guest ID : @Model.Guest.Id</h4>
+                <h4>DateOfBirth : @Model.Guest.Date_Of_Birth</h4>
+                <h4>PhotoPath : @Model.Guest.PhotoPath</h4>
+
+            </div>
+            <div class="card-footer text-center">
+                <a href="#" class="btn btn-primary">Back</a>
+                <a href="#" class="btn btn-primary">Edit</a>
+                <a href="#" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
 @section Scripts{
     <script src="~/js/CustomScript.js"></script>
     }
