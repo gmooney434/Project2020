@@ -33,5 +33,17 @@ namespace Project2020.Controllers
 ;
             return View(homeDetailsViewModel);
         }
+
+        [HttpGet]
+        public ViewResult Create()
+        {
+            return View();                   
+        }
+        [HttpPost]
+        public RedirectToActionResult Create(Guest guest)
+        {
+            Guest newGuest = _guestRepository.Add(guest);
+            return RedirectToAction("details", new { id = newGuest.Id });
+        }
     }
 }

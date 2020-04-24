@@ -14,7 +14,9 @@ namespace Project2020.Models
         public string Forename { get; set; }
         [Required]
         public string Surname { get; set; }
-        public Nullable<System.DateTime> Date_Of_Birth { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        public DateTime Date_Of_Birth { get; set; }
         public string PhotoPath { get; set; }
     }
 }

@@ -17,7 +17,7 @@
                 <img class="card-img-top" src="~/images/UU.jpg"  asp-append-version="true"/>
 
                 <h4>Guest ID : @Model.Guest.Id</h4>
-                <h4>DateOfBirth : @Model.Guest.Date_Of_Birth</h4>
+                <h4>DateOfBirth : @Model.Guest.Date_Of_Birth.ToString("dd/MM/yyyy")</h4>
                 <h4>PhotoPath : @Model.Guest.PhotoPath</h4>
 
             </div>

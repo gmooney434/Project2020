@@ -18,6 +18,13 @@ namespace Project2020.Models
             };
         }
 
+        public Guest Add(Guest guest)
+        {
+            guest.Id = _guestList.Max(g => g.Id) + 1;
+            _guestList.Add(guest);
+            return guest;
+        }
+
         public IEnumerable<Guest> GetAllGuests()
         {
             return _guestList;
