@@ -6,6 +6,11 @@
       "provider": "cdnjs",
       "library": "jquery@3.5.0",
       "destination": "wwwroot/lib/jquery/"
+    },
+    {
+      "provider": "filesystem",
+      "library": "C:/Users/User/Downloads/bootstrap-4.4.1-dist/bootstrap/",
+      "destination": "wwwroot/lib/bootstrap/"
     }
   ]
 }
