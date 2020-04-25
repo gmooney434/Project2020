@@ -21,8 +21,7 @@ namespace Project2020.Models
         public DateTime Date_Of_Birth { get; set; }
         [Required]
         public string PhotoPath { get; set; }
-        [ForeignKey("Stay")]
-        public int StayID { get; set; }
-        public virtual Stay Stay { get; set; }
+        //public List<Stay> Stays { get; set; }
+
     }
 }
