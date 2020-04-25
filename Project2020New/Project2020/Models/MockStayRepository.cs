@@ -16,7 +16,7 @@ namespace Project2020.Models
             DateTime myDateTime = DateTime.Parse(dateInput);
 
             _stayList = new List<Stay>() {
-                new Stay() {GuestID = 1, StayId = 1, StartDate = myDateTime, EndDate = myDateTime }
+                new Stay() {StayId = 1, StartDate = myDateTime, EndDate = myDateTime }
                 
             };
         }

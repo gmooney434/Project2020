@@ -24,7 +24,7 @@ namespace Project2020.Models
         public DateTime EndDate { get; set; }
         [ForeignKey("Guest")]
         public int Id { get; set; }
-        public Guest guest { get; set; }
+        public Guest Guest { get; set; }
 
     }
 }
