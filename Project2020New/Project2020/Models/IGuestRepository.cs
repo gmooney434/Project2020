@@ -10,5 +10,7 @@ namespace Project2020.Models
         Guest GetGuest(int Id);
         IEnumerable<Guest> GetAllGuests();
         Guest Add(Guest guest);
+        Guest Update(Guest guestChanges);
+        Guest Delete(int id);
     }
 }

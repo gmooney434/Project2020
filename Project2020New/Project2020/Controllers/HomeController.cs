@@ -45,7 +45,7 @@ namespace Project2020.Controllers
             if (ModelState.IsValid)
             {
                 Guest newGuest = _guestRepository.Add(guest);
-                return RedirectToAction("details", new { id = newGuest.Id });
+                return RedirectToAction("details", new { Stayid = newGuest.Id });
             }
             else
             {

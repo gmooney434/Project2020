@@ -38,5 +38,30 @@ namespace Project2020.Models
         {
             return _guestList.FirstOrDefault(e => e.Id == Id);
         }
+
+        public Guest Update(Guest guestChanges)
+        {
+            Guest guest = _guestList.FirstOrDefault(g => g.Id == guestChanges.Id);
+            if (guest != null)
+            {
+                guest.Forename = guestChanges.Forename;
+                guest.Surname = guestChanges.Surname;
+                guest.Date_Of_Birth = guestChanges.Date_Of_Birth;
+                guest.PhotoPath = guestChanges.PhotoPath;
+
+            }
+            return guest;
+        }
+
+        public Guest Delete(int Id)
+        {
+            Guest guest = _guestList.FirstOrDefault(g => g.Id == Id);
+            if(guest != null)
+            {
+                _guestList.Remove(guest);
+
+            }
+            return guest;
+        }
     }
 }

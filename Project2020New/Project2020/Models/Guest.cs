@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace Project2020.Models
     {
         public int Id { get; set; }
         [Required]
-        [MaxLength(50, ErrorMessage = "Name cannot Exceed 50 Characters")]
+        [MaxLength(50, ErrorMessage = "Name cannot Exceed 25 Characters")]
         public string Forename { get; set; }
         [Required]
         public string Surname { get; set; }
@@ -20,5 +21,8 @@ namespace Project2020.Models
         public DateTime Date_Of_Birth { get; set; }
         [Required]
         public string PhotoPath { get; set; }
+        [ForeignKey("Stay")]
+        public int StayID { get; set; }
+        public virtual Stay Stay { get; set; }
     }
 }

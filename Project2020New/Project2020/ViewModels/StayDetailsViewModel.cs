@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Project2020.ViewModels
 {
-    public class HomeDetailsViewModel
+    public class StayDetailsViewModel
     {
-        public Guest Guest { get; set; }
         public Stay Stay { get; set; }
         public string PageTitle { get; set; }
     }
