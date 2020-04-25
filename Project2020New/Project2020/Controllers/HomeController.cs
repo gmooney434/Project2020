@@ -30,7 +30,7 @@ namespace Project2020.Controllers
                 Guest = _guestRepository.GetGuest(id),
                 PageTitle = "Guest Details"
             };
-;
+
             return View(homeDetailsViewModel);
         }
 

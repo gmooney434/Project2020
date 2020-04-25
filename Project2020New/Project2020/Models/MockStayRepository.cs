@@ -21,18 +21,6 @@ namespace Project2020.Models
             };
         }
 
-        public Stay Add(Stay stay)
-        {
-            stay.StayId = _stayList.Max(s => s.StayId) + 1;
-            _stayList.Add(stay);
-            return stay;
-        }
-
-        public IEnumerable<Stay> GetAllStays()
-        {
-            return _stayList;
-        }
-
         public Stay GetStay(int StayId)
         {
             return _stayList.FirstOrDefault(e => e.StayId == StayId);
