@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,10 +9,12 @@ namespace Project2020.Models
     public class SQLGuestRepository : IGuestRepository
     {
         private readonly AppDbContext context;
+        private readonly ILogger<SQLGuestRepository> logger;
 
-        public SQLGuestRepository(AppDbContext context)
+        public SQLGuestRepository(AppDbContext context, ILogger<SQLGuestRepository> logger)
         {
             this.context = context;
+            this.logger = logger;
         }
         public Guest Add(Guest guest)
         {
@@ -39,6 +42,12 @@ namespace Project2020.Models
 
         public Guest GetGuest(int Id)
         {
+            logger.LogTrace("Trace Log");
+            logger.LogDebug("Debug Log");
+            logger.LogInformation("Information Log");
+            logger.LogWarning("Warning Log");
+            logger.LogError("Error Log");
+            logger.LogCritical("Critical Log");
             return context.Guests.Find(Id);
         }
 

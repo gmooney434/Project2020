@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace Project2020.Controllers
 {
@@ -16,11 +17,15 @@ namespace Project2020.Controllers
     {
         private readonly IGuestRepository _guestRepository;
         private readonly IHostingEnvironment hostingEnvironment;
+        private readonly ILogger logger;
 
-        public HomeController(IGuestRepository guestRepository, IHostingEnvironment hostingEnvironment)
+        public HomeController(IGuestRepository guestRepository, IHostingEnvironment hostingEnvironment, ILogger<HomeController> logger)
         {
+
+
             _guestRepository = guestRepository;
             this.hostingEnvironment = hostingEnvironment;
+            this.logger = logger;
         }
 
         public ViewResult Index()
@@ -31,6 +36,13 @@ namespace Project2020.Controllers
 
         public ViewResult Details(int? id)
         {
+            logger.LogTrace("Trace Log");
+            logger.LogDebug("Debug Log");
+            logger.LogInformation("Information Log");
+            logger.LogWarning("Warning Log");
+            logger.LogError("Error Log");
+            logger.LogCritical("Critical Log");
+
 
             Guest guest = _guestRepository.GetGuest(id.Value);
 

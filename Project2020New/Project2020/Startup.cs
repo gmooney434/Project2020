@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +29,9 @@ namespace Project2020
             services.AddDbContextPool<AppDbContext>(
                 options => options.UseSqlServer(_config.GetConnectionString("GuestDBConnection")));
 
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>();
+
             services.AddMvc().AddXmlSerializerFormatters();
             services.AddScoped<IGuestRepository, SQLGuestRepository>();
             services.AddSingleton<IStayRepository, MockStayRepository>();
@@ -48,6 +52,8 @@ namespace Project2020
 
 
             app.UseStaticFiles();
+
+            app.UseAuthentication();
             
             app.UseMvc(routes => {
                 routes.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");
