@@ -19,7 +19,7 @@ namespace Project2020.ViewModels
         [DisplayFormat(DataFormatString = "{0:dd MM yyyy}")]
         public DateTime Date_Of_Birth { get; set; }
         [Required]
-        public IFormFile Photo { get; set; }
+        public List<IFormFile> Photos { get; set; }
         //public List<Stay> Stays { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace Project2020.Models
             Forename = "John",
             Surname = "Doe",
             Date_Of_Birth = myDateTime,
-            PhotoPath = "files"
+            PhotoPath = null
         }
         );
             modelBuilder.Entity<Stay>().HasData(

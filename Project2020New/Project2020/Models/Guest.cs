@@ -19,7 +19,6 @@ namespace Project2020.Models
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd MM yyyy}")]
         public DateTime Date_Of_Birth { get; set; }
-        [Required]
         public string PhotoPath { get; set; }
         //public List<Stay> Stays { get; set; }
 
