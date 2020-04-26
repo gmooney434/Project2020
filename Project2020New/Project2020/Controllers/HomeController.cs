@@ -29,11 +29,20 @@ namespace Project2020.Controllers
             return View(model);
         }
 
-        public ViewResult Details(int id)
+        public ViewResult Details(int? id)
         {
+
+            Guest guest = _guestRepository.GetGuest(id.Value);
+
+            if(guest == null)
+            {
+                Response.StatusCode = 404;
+                return View("GuestNotFound", id.Value);
+            }
+
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel
             {
-                Guest = _guestRepository.GetGuest(id),
+                Guest = guest,
                 PageTitle = "Guest Details"
             };
 
@@ -71,13 +80,13 @@ namespace Project2020.Controllers
                 guest.Date_Of_Birth = model.Date_Of_Birth;
                 if (model.Photos != null)
                 {
-                    //if(model.ExistingPhotoPath != null)
-                  //  {
-                    //    String filePath = Path.Combine(hostingEnvironment.WebRootPath,
-                      //      "images", model.ExistingPhotoPath);
-                       // System.IO.File.Delete(filePath);
+                    if(model.ExistingPhotoPath != null)
+                    {
+                        String filePath = Path.Combine(hostingEnvironment.WebRootPath,
+                            "images", model.ExistingPhotoPath);
+                        System.IO.File.Delete(filePath);
 
-                   // }
+                    }
                     guest.PhotoPath = ProcessUploadedFile(model);
                 }             
 
@@ -96,8 +105,12 @@ namespace Project2020.Controllers
                 {
                     string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images");
                     uniqueFileName = Guid.NewGuid().ToString() + "_" + photo.FileName;
-                    String filepath = Path.Combine(uploadsFolder, uniqueFileName);
-                    photo.CopyTo(new FileStream(filepath, FileMode.Create));
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        photo.CopyTo(fileStream);
+                    }
+
                 }
             }
 
