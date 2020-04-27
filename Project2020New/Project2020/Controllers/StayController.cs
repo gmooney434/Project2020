@@ -16,15 +16,20 @@ namespace Project2020.Controllers
         {
             _stayRepository = stayRepository;
         }
+        public string Index()
+        {
+            return null;
+        }
         
         public ViewResult Details(int Stayid)
         {
             StayDetailsViewModel stayDetailsViewModel = new StayDetailsViewModel
             {
                 Stay = _stayRepository.GetStay(Stayid),
-                PageTitle = "Stay Details"
-            };            
-            return View(stayDetailsViewModel);
+                PageTitle = "Stay Details",
+                return View(stayDetailsViewModel);
+        };            
+            
         }
     }
 }
