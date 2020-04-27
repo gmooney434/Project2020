@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Project2020.Models
 {
 
-    public class AppDbContext :IdentityDbContext
+    public class AppDbContext :IdentityDbContext<ApplicationUser>
     {
 
 
