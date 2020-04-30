@@ -44,7 +44,30 @@
     </div>
 
     <div asp-validation-summary="All" class="text-danger"></div>
-
+    <div class="card">
+        <div class="card-header">
+            <h3>Guest stays</h3>
+        </div>
+        <div class="card-body">
+            @if (Model.Stays.Any())
+            {
+                foreach (var stay in Model.Stays)
+                {
+                    <h5 class="card-title">@Model.Stays</h5>
+                }
+            }
+            else
+            {
+                <h5 class="card-title">None at the moment</h5>
+            }
+        </div>
+        <div class="card-footer">
+            <a asp-controller="Stay" asp-action="Index" asp-route-userId="1/"
+               class="btn btn-primary" style="width:auto">
+                Manage Stays
+            </a>
+        </div>
+    </div>
     <div class="form-group" row>
         <div class="col-sm-10">
             <button type="submit" class="btn btn-primary">Update</button>

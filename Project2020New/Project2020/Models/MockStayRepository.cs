@@ -15,15 +15,24 @@ namespace Project2020.Models
         {
             DateTime myDateTime = DateTime.Parse(dateInput);
 
-            _stayList = new List<Stay>() {
-                new Stay() {StayId = 1, StartDate = myDateTime, EndDate = myDateTime }
-                
-            };
+            _stayList = new List<Stay>() { };
+            
         }
 
+        public Stay Add(Stay stay)
+        {          
+            stay.StayId = _stayList.Max(s => s.StayId) + 1;
+            _stayList.Add(stay);
+            return stay;
+        }
         public Stay GetStay(int StayId)
         {
             return _stayList.FirstOrDefault(e => e.StayId == StayId);
+        }
+
+        public IEnumerable<Stay> GetAllStays()
+        {
+            return _stayList;
         }
     }
 }

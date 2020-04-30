@@ -7,6 +7,8 @@ namespace Project2020.Models
 {
     public interface IStayRepository
     {
-        Stay GetStay(int StayId);        
+        Stay GetStay(int StayId);
+        IEnumerable<Stay> GetAllStays();
+        Stay Add(Stay stay);
     }
 }

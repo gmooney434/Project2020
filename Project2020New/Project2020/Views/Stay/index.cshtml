@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Stay>
+
+    @{
+        ViewBag.Title = "Stays List";
+    }
+
+    <div class="card-deck">
+        @foreach (var stay in Model)
+        {
+            <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
+                <div class="card-header">
+                    <div>
+                        <h3>Guest ID :@stay.GuestID</h3>
+                        <h3>Start Date:@stay.StartDate</h3>
+                        <h3>End Date :@stay.EndDate</h3>
+                        <h3>Stay ID:@stay.StayId</h3>
+                    </div>
+                </div>               
+
+                <div class="card-footer text-center">
+                    <a asp-controller="home" asp-action="details"
+                       asp-route-id="@stay.StayId"
+                       class="btn btn-primary m-1">View</a>
+                    <a asp-controller="home" asp-action="edit"
+                       asp-route-id="@stay.StayId" class="btn btn-primary m-1">Edit</a>
+                    <a href="#" class="btn btn-danger m-1">Delete</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -16,20 +16,34 @@ namespace Project2020.Controllers
         {
             _stayRepository = stayRepository;
         }
-        public string Index()
+
+        public ActionResult Index()
         {
-            return null;
+            Guest guest = _guestRepository.GetGuest(id.Value);
+            var model = _stayRepository.GetAllStays();
+            return View(model);
         }
-        
-        public ViewResult Details(int Stayid)
+
+
+        public ViewResult Details(int? id)
         {
+            
+
+            if (stay == null)
+            {
+                Response.StatusCode = 404;
+                return View("GuestNotFound", id.Value);
+            }
+
             StayDetailsViewModel stayDetailsViewModel = new StayDetailsViewModel
             {
-                Stay = _stayRepository.GetStay(Stayid),
-                PageTitle = "Stay Details",
-                return View(stayDetailsViewModel);
-        };            
-            
+                Stay = stay,
+                PageTitle = "Stay Details"
+            };
+
+            return View(stayDetailsViewModel);
         }
+       
+
     }
 }

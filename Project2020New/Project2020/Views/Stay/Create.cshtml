@@ -1,14 +1,15 @@
-﻿@model Stay
+﻿@model CreateStayViewModel
 
 @{
     ViewBag.Title = "Create Stay";
 }
 
-<form asp-controller="Stay" asp-action="Create" method="post" class="mt-3">
+
+<form enctype="multipart/form-data" asp-controller="Stay" asp-action="Create" method="post" class="mt-3">
     <div class="form-group row">
         <label asp-for="StartDate" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
-            <input asp-for="StartDate" class="form-control" placeholder="Forename" />
+            <input asp-for="StartDate" class="form-control" placeholder="StartDate" />
             <span asp-validation-for="StartDate" class="text-danger"></span>
         </div>
     </div>
@@ -18,7 +19,21 @@
             <input asp-for="EndDate" class="form-control" placeholder="Surname" />
             <span asp-validation-for="EndDate" class="text-danger"></span>
         </div>
-    </div>  
+    </div>
+    <div class="form-group row">
+        <label asp-for="EmergencyContactNumber" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="EmergencyContactNumber" class="form-control" placeholder="DateofBirth" />
+            <span asp-validation-for="EmergencyContactNumber" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="GuestID" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <label asp-for="GuestID" class="form-control"></label>
+        </div>
+    </div>
+</form>
 
     <div asp-validation-summary="All" class="text-danger"></div>
 
@@ -27,4 +42,3 @@
             <button type="submit" class="btn btn-primary">Create</button>
         </div>
     </div>
-</form>

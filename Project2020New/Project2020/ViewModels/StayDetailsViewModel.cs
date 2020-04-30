@@ -9,8 +9,8 @@ namespace Project2020.ViewModels
 {
     public class StayDetailsViewModel
     {
-        public Stay Stay { get; set; }
         public Guest Guest { get; set; }
+        public Stay Stay { get; set; }
         public string PageTitle { get; set; }
     }
 }

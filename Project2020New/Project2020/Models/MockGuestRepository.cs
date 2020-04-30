@@ -13,14 +13,15 @@ namespace Project2020.Models
 
         public MockGuestRepository()
         {
-            DateTime myDateTime = DateTime.Parse(dateInput);
+   DateTime myDateTime = DateTime.Parse(dateInput);
 
             _guestList = new List<Guest>()
             {
                 new Guest() {Id = 1, Forename = "John", Surname = "Smith", Date_Of_Birth = myDateTime, PhotoPath = "files" },
                 new Guest() {Id = 2, Forename = "Jane", Surname = "Doe", Date_Of_Birth = myDateTime, PhotoPath = "files" }
             };
-        }
+        } 
+
 
         public Guest Add(Guest guest)
         {

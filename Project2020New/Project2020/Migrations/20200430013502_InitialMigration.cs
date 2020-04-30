@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Project2020.Migrations
 {
-    public partial class AddingIdentity : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -40,11 +40,29 @@ namespace Project2020.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    B_Code = table.Column<string>(nullable: true),
+                    FullName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Guests",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Forename = table.Column<string>(maxLength: 50, nullable: false),
+                    Surname = table.Column<string>(nullable: false),
+                    Date_Of_Birth = table.Column<DateTime>(nullable: false),
+                    PhotoPath = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Guests", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -153,6 +171,38 @@ namespace Project2020.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Stays",
+                columns: table => new
+                {
+                    StayId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    StartDate = table.Column<DateTime>(nullable: false),
+                    EndDate = table.Column<DateTime>(nullable: false),
+                    EmergencyContactNumber = table.Column<string>(nullable: true),
+                    GuestID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Stays", x => x.StayId);
+                    table.ForeignKey(
+                        name: "FK_Stays_Guests_GuestID",
+                        column: x => x.GuestID,
+                        principalTable: "Guests",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Guests",
+                columns: new[] { "Id", "Date_Of_Birth", "Forename", "PhotoPath", "Surname" },
+                values: new object[] { 1, new DateTime(1998, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "John", null, "Doe" });
+
+            migrationBuilder.InsertData(
+                table: "Stays",
+                columns: new[] { "StayId", "EmergencyContactNumber", "EndDate", "GuestID", "StartDate" },
+                values: new object[] { 1, "07411111111", new DateTime(1998, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(1998, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -191,6 +241,11 @@ namespace Project2020.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Stays_GuestID",
+                table: "Stays",
+                column: "GuestID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -211,10 +266,16 @@ namespace Project2020.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Stays");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Guests");
         }
     }
 }

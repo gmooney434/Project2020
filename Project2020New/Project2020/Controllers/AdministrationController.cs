@@ -14,7 +14,7 @@ using Project2020.ViewModels;
 
 namespace Project2020.Controllers
 {
-    [Authorize(Roles = "Admin")]
+   // [Authorize(Roles = "Admin")]
     public class AdministrationController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;

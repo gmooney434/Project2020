@@ -217,25 +217,32 @@ namespace Project2020.Migrations
 
             modelBuilder.Entity("Project2020.Models.Stay", b =>
                 {
-                    b.Property<int>("Id");
+                    b.Property<int>("StayId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("EmergencyContactNumber");
 
                     b.Property<DateTime>("EndDate");
 
+                    b.Property<int>("GuestID");
+
                     b.Property<DateTime>("StartDate");
 
-                    b.Property<int>("StayId");
+                    b.HasKey("StayId");
 
-                    b.HasKey("Id");
+                    b.HasIndex("GuestID");
 
                     b.ToTable("Stays");
 
                     b.HasData(
                         new
                         {
-                            Id = 1,
+                            StayId = 1,
+                            EmergencyContactNumber = "07411111111",
                             EndDate = new DateTime(1998, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StartDate = new DateTime(1998, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StayId = 1
+                            GuestID = 1,
+                            StartDate = new DateTime(1998, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -244,7 +251,7 @@ namespace Project2020.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -252,7 +259,7 @@ namespace Project2020.Migrations
                     b.HasOne("Project2020.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -260,7 +267,7 @@ namespace Project2020.Migrations
                     b.HasOne("Project2020.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -268,12 +275,12 @@ namespace Project2020.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Project2020.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -281,15 +288,15 @@ namespace Project2020.Migrations
                     b.HasOne("Project2020.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Project2020.Models.Stay", b =>
                 {
                     b.HasOne("Project2020.Models.Guest", "Guest")
-                        .WithMany()
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .WithMany("Stays")
+                        .HasForeignKey("GuestID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

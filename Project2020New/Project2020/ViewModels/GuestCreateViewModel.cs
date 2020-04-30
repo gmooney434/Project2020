@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Project2020.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -20,6 +21,6 @@ namespace Project2020.ViewModels
         public DateTime Date_Of_Birth { get; set; }
         [Required]
         public List<IFormFile> Photos { get; set; }
-        //public List<Stay> Stays { get; set; }
+        public List<Stay> Stays { get; set; }
     }
 }
