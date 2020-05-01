@@ -16,23 +16,23 @@ namespace Project2020.Controllers
         {
             _stayRepository = stayRepository;
         }
-
-        public ActionResult Index()
+        //Should only load stays with the corresponding guestID
+        public ViewResult Index()
         {
-            Guest guest = _guestRepository.GetGuest(id.Value);
+          
             var model = _stayRepository.GetAllStays();
             return View(model);
         }
 
-
-        public ViewResult Details(int? id)
+        //needs to load both guestID followed by stayID
+        public ViewResult Details(int? StayId)
         {
-            
+            Stay stay = _stayRepository.GetStay(StayId.Value);
 
             if (stay == null)
             {
                 Response.StatusCode = 404;
-                return View("GuestNotFound", id.Value);
+                return View("StayNotFound", StayId.Value);
             }
 
             StayDetailsViewModel stayDetailsViewModel = new StayDetailsViewModel
@@ -43,7 +43,44 @@ namespace Project2020.Controllers
 
             return View(stayDetailsViewModel);
         }
-       
 
+        [HttpGet]
+        public ViewResult Create()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ViewResult Edit(int id)
+        {
+            Stay stay = _stayRepository.GetStay(id);
+            StayEditViewModel stayEditViewModel = new StayEditViewModel
+            {
+                StayId = stay.StayId,
+                StartDate = stay.StartDate,
+                EndDate = stay.EndDate,
+                EmergencyContactNumber = stay.EmergencyContactNumber,
+                GuestID = stay.GuestID
+            };
+            return View(stayEditViewModel);
+        }
+        [HttpPost]
+        public IActionResult Edit(StayEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Stay stay = _stayRepository.GetStay(model.StayId);
+
+                stay.StayId = model.StayId;
+                stay.StartDate = model.StartDate;
+                stay.EndDate = model.EndDate;
+                stay.EmergencyContactNumber = model.EmergencyContactNumber;
+                stay.GuestID = model.GuestID;
+
+                _stayRepository.Update(stay);
+                return RedirectToAction("index");
+            }
+            return View();
+        }
     }
 }

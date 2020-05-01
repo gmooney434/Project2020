@@ -9,7 +9,7 @@
     <div class="col-sm-8">
         <div class="card">
             <div class="card-header">
-                <h1></h1>
+                <h1>@Model.Guest.Forename, @Model.Stay.StayId</h1>
             </div>
 
             <div class="card-body text-center">
@@ -23,10 +23,11 @@
 
             </div>
             <div class="card-footer text-center">
-                <a asp-controller="home" , asp-action="index" class="btn btn-primary">Back</a>
-                <a href="#" class="btn btn-primary">Edit</a>
-                <a href="#" class="btn btn-danger">Delete</a>
-                <a asp-controller="stay", asp-action="Create" class="btn btn-primary">Back</a>
+                <a asp-controller="stay" , asp-action="index" class="btn btn-primary">Back</a>
+                <a asp-controller="stay" asp-action="edit"
+                   asp-route-id="@Model.Stay.StayId" class="btn btn-primary m-1">Edit</a>
+                <a asp-controller="stay" , asp-action="Delete" class="btn btn-danger">Delete</a>
+
             </div>
         </div>
     </div>

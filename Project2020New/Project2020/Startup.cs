@@ -46,7 +46,7 @@ namespace Project2020
                                 
             }).AddXmlSerializerFormatters();
             services.AddScoped<IGuestRepository, SQLGuestRepository>();
-            services.AddScoped<IStayRepository, MockStayRepository>();
+            services.AddScoped<IStayRepository, SQLStayRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

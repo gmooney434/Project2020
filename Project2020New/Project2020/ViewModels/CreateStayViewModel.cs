@@ -10,7 +10,7 @@ namespace Project2020.ViewModels
 {
     public class CreateStayViewModel
     {
-        public int StayId { get; set; }
+  
         [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd MM yyyy}")]

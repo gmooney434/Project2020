@@ -34,5 +34,15 @@ namespace Project2020.Models
         {
             return _stayList;
         }
+
+        public Stay Update(Stay stayChanges)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Stay Delete(int stayid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
