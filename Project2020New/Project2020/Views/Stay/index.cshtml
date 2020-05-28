@@ -4,31 +4,36 @@
     ViewBag.Title = "Stays List";
 }
 
-            <div class="card-deck">
-                @foreach (var stay in Model)
-                {
+<div class="card-deck">
+    @foreach (var stay in Model)
+    {
 
-                    <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
-                        <div class="card-header">
-                            <div><h3>StayID: @stay.StayId</h3></div>
-                            <div><h3>StartDate: @stay.StartDate.ToString("dd/MM/yyyy")</h3></div>
-                            <div><h3>EndDate: @stay.EndDate.ToString("dd/MM/yyyy")</h3></div>
-                            <div><h3>GuestID: @stay.GuestID</h3></div>
-                            <div><h3></h3></div>
-
-
-                        </div>
+        <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
+            <div class="card-header">
+                <div><h3>StayID: @stay.StayId</h3></div>
+                <div><h3>StartDate: @stay.StartDate.ToString("dd/MM/yyyy")</h3></div>
+                <div><h3>EndDate: @stay.EndDate.ToString("dd/MM/yyyy")</h3></div>
+                <div><h3>GuestID: @stay.GuestID</h3></div>
+                <div><h3></h3></div>
 
 
-
-                        <div class="card-footer text-center">
-                            <a asp-controller="stay" asp-action="details"
-                               asp-route-id="@stay.GuestID"
-                               class="btn btn-primary m-1">View</a>
-                            <a asp-controller="stay" asp-action="edit"
-                               asp-route-id="@stay.GuestID" class="btn btn-primary m-1">Edit</a>
-                            <a href="#" class="btn btn-danger m-1">Delete</a>
-                        </div>
-                    </div>
-                }
             </div>
+
+
+
+            <div class="card-footer text-center">
+
+                <a asp-controller="stay" asp-action="edit" asp-route-id="@stay.GuestID" class="btn btn-primary m-1">Edit</a>
+            </div>
+        </div>
+    }
+    
+    
+</div>
+@foreach (var stay in Model)
+{
+<div class="card-deck">
+    <a asp-controller="stay" asp-action="create" asp-route-id="@stay.GuestID" asp-route-stayid="@stay.StayId" 
+        style = "width:auto" class="btn btn-primary m-1">Add New Stay</a>
+</div>
+}

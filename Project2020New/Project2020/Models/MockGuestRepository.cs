@@ -64,5 +64,20 @@ namespace Project2020.Models
             }
             return guest;
         }
+
+        public Guest GetGuest(object value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(Guest guest)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Save()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

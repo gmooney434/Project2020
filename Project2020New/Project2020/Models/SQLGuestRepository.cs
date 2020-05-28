@@ -16,6 +16,9 @@ namespace Project2020.Models
             this.context = context;
             this.logger = logger;
         }
+
+        public object[] Id { get; private set; }
+
         public Guest Add(Guest guest)
         {
             context.Guests.Add(guest);
@@ -35,6 +38,8 @@ namespace Project2020.Models
 
         }
 
+        public void Delete(Guest guest) => GetGuest(Id);
+
         public IEnumerable<Guest> GetAllGuests()
         {
             return context.Guests;
@@ -49,6 +54,16 @@ namespace Project2020.Models
             logger.LogError("Error Log");
             logger.LogCritical("Critical Log");
             return context.Guests.Find(Id);
+        }
+
+        public Guest GetGuest(object value)
+        {
+            return context.Guests.Find(Id);
+        }
+
+        public void Save()
+        {
+            throw new NotImplementedException();
         }
 
         public Guest Update(Guest guestChanges)

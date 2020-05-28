@@ -54,6 +54,21 @@ namespace Project2020.Models
             context.SaveChanges();
             return stayChanges;
         }
+
+        public Stay GetGuestStay(int GuestId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Stay GetStay(object value1, int value2)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Stay GetStay(string stayid)
+        {
+            return context.Stays.Find(stayid);
+        }
     }
 
 }

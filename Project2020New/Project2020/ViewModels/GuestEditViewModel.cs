@@ -13,7 +13,8 @@ namespace Project2020.ViewModels
         {
             Stays = new List<string>();
         }
-
+        public Guest Guest { get; set; }
+        public Stay Stay { get; set; }
         public int Id { get; set; }
         public string ExistingPhotoPath { get; set; }
         public new List<string> Stays { get; set; }

@@ -69,6 +69,12 @@ namespace Project2020
             
             app.UseMvc(routes => {
                 routes.MapRoute("Default", "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(
+
+                name: "StayManagement",
+                template: "{controller}/{action}/{id}/{stayid}");
+                    
+                    
             });
             
 

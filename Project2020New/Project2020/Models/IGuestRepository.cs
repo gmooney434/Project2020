@@ -12,5 +12,8 @@ namespace Project2020.Models
         Guest Add(Guest guest);
         Guest Update(Guest guestChanges);
         Guest Delete(int id);
+        Guest GetGuest(object value);
+        void Delete(Guest guest);
+        void Save();
     }
 }

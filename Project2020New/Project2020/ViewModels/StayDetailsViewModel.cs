@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace Project2020.ViewModels
 {
-    public class StayDetailsViewModel
-    {
-        public Guest Guest { get; set; }
+    public class StayDetailsViewModel : CreateStayViewModel
+    {       
         public Stay Stay { get; set; }
         public string PageTitle { get; set; }
+        public string StayId { get; set; }
+        public string Id { get; set; }
     }
 }

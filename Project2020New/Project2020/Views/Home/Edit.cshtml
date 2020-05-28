@@ -44,6 +44,15 @@
     </div>
 
     <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group" row>
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
+
+
     <div class="card">
         <div class="card-header">
             <h3>Guest stays</h3>
@@ -62,18 +71,13 @@
             }
         </div>
         <div class="card-footer">
-            <a asp-controller="Stay" asp-action="Index" asp-route-userId="1/"
+            <a asp-controller="Stay" asp-action="Index" asp-route-userId="Id"
                class="btn btn-primary" style="width:auto">
                 Manage Stays
             </a>
         </div>
     </div>
-    <div class="form-group" row>
-        <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Update</button>
-            <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Cancel</a>
-        </div>
-    </div>
+
 
     @*This script is required for displaying files uploaded and count of files if more than one*@
 

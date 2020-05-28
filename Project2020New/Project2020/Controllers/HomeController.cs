@@ -11,6 +11,7 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
+using Project2020.Migrations;
 
 namespace Project2020.Controllers
 {
@@ -98,6 +99,32 @@ namespace Project2020.Controllers
                 _guestRepository.Update(guest);
                 return RedirectToAction("index");
             }
+            return View();
+        }
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+
+            Guest guest = _guestRepository.GetGuest(id);
+
+            if (guest == null)
+                return View("NotFound");
+            else
+                return View(guest);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id, string confirmButton)
+        {
+
+            Guest guest = _guestRepository.GetGuest(id);
+
+            if (guest == null)
+                return View("NotFound");
+
+            _guestRepository.Delete(guest);
+            _guestRepository.Save();
+
             return View();
         }
 

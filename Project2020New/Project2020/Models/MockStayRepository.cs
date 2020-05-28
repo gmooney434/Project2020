@@ -44,5 +44,10 @@ namespace Project2020.Models
         {
             throw new NotImplementedException();
         }
+
+        public Stay GetStay(string stayid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

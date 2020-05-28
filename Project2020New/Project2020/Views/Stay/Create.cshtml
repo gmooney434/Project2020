@@ -23,22 +23,32 @@
     <div class="form-group row">
         <label asp-for="EmergencyContactNumber" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
-            <input asp-for="EmergencyContactNumber" class="form-control" placeholder="DateofBirth" />
+            <input asp-for="EmergencyContactNumber" class="form-control" placeholder="EmergencyContactNumber" />
             <span asp-validation-for="EmergencyContactNumber" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label asp-for="GuestID" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-10">
-            <label asp-for="GuestID" class="form-control"></label>
         </div>
     </div>
 </form>
 
-    <div asp-validation-summary="All" class="text-danger"></div>
+<div asp-validation-summary="All" class="text-danger"></div>
 
-    <div class="form-group" row>
-        <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Create</button>
-        </div>
+<div class="form-group" row>
+    <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary">Create</button>
     </div>
+</div>
+@section Scripts {
+    <script>
+            $(document).ready(function () {
+                $('.custom-file-input').on("change", function () {
+                    var fileLabel = $(this).next('.custom-file-label');
+                    var files = $(this)[0].files;
+                    if (files.length > 1) {
+                        fileLabel.html(files.length + ' files selected');
+                    }
+                    else if (files.length == 1) {
+                        fileLabel.html(files[0].name);
+                    }
+                });
+            });
+    </script>
+}

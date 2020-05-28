@@ -5,45 +5,53 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Project2020.Controllers;
 
 namespace Project2020.Controllers
 {
+    
     public class StayController : Controller
     {
         private readonly IStayRepository _stayRepository;
+        private readonly IGuestRepository _guestRepository;
 
-        public StayController(IStayRepository stayRepository)
+        public StayController(IStayRepository stayRepository, IGuestRepository guestRepository)
         {
             _stayRepository = stayRepository;
+            _guestRepository = guestRepository;
         }
         //Should only load stays with the corresponding guestID
+        
         public ViewResult Index()
-        {
-          
+        {         
             var model = _stayRepository.GetAllStays();
             return View(model);
         }
 
         //needs to load both guestID followed by stayID
-        public ViewResult Details(int? StayId)
+        /*
+        public ViewResult Details(string id, string stayid)
         {
-            Stay stay = _stayRepository.GetStay(StayId.Value);
+            Guest guest = _guestRepository.GetGuest(id);
+            Stay stay = _stayRepository.GetStay(stayid);
 
-            if (stay == null)
+            if (stayid == null)
             {
                 Response.StatusCode = 404;
-                return View("StayNotFound", StayId.Value);
+                return View("StayNotFound", stayid);
             }
 
-            StayDetailsViewModel stayDetailsViewModel = new StayDetailsViewModel
+            StayDetailsViewModel stayDetailsViewModel = new StayDetailsViewModel  
             {
-                Stay = stay,
-                PageTitle = "Stay Details"
+                PageTitle = "Stay Details",
+                StayId = stayid,
+                Id = id
+
             };
 
             return View(stayDetailsViewModel);
         }
-
+        */
         [HttpGet]
         public ViewResult Create()
         {
@@ -82,5 +90,24 @@ namespace Project2020.Controllers
             }
             return View();
         }
+        [HttpPost]
+        public IActionResult Create(CreateStayViewModel model)
+        {
+
+                Guest guest = _guestRepository.GetGuest(model.GuestID);
+
+                Stay newStay = new Stay
+                {
+                    StartDate = model.StartDate,
+                    EndDate = model.EndDate,
+                    EmergencyContactNumber = model.EmergencyContactNumber,
+                    
+                };
+
+                _stayRepository.Add(newStay);
+                return RedirectToAction("Index", new { stayid = newStay.StayId });
+            }
+            
+        
     }
 }
